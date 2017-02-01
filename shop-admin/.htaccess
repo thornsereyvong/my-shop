@@ -1,0 +1,139 @@
+
+# No web server version and indexes
+ServerSignature Off
+Options -Indexes
+
+# Enable rewrite engine
+RewriteEngine On
+
+# Block suspicious request methods
+RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK|DEBUG) [NC]
+RewriteRule ^(.*)$ - [F,L]
+
+# Block WP timthumb hack
+RewriteCond %{REQUEST_URI} (timthumb\.php|phpthumb\.php|thumb\.php|thumbs\.php) [NC]
+RewriteRule . - [S=1]
+
+# Block suspicious user agents and requests
+RewriteCond %{HTTP_USER_AGENT} (libwww-perl|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (;|<|>|'|"|\)|\(|%0A|%0D|%22|%27|%28|%3C|%3E|%00).*(libwww-perl|wget|python|nikto|curl|scan|java|winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner) [NC,OR]
+RewriteCond %{THE_REQUEST} \?\ HTTP/ [NC,OR]
+RewriteCond %{THE_REQUEST} \/\*\ HTTP/ [NC,OR]
+RewriteCond %{THE_REQUEST} etc/passwd [NC,OR]
+RewriteCond %{THE_REQUEST} cgi-bin [NC,OR]
+RewriteCond %{THE_REQUEST} (%0A|%0D) [NC,OR]
+
+# Block MySQL injections, RFI, base64, etc.
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(\.\.//?)+ [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC,OR]
+RewriteCond %{QUERY_STRING} \=PHP[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12} [NC,OR]
+RewriteCond %{QUERY_STRING} (\.\./|\.\.) [OR]
+RewriteCond %{QUERY_STRING} ftp\: [NC,OR]
+RewriteCond %{QUERY_STRING} http\: [NC,OR] 
+RewriteCond %{QUERY_STRING} https\: [NC,OR]
+RewriteCond %{QUERY_STRING} \=\|w\| [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)/self/(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} ^(.*)cPath=http://(.*)$ [NC,OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^i]*i)+frame.*(>|%3E) [NC,OR] 
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [NC,OR]
+RewriteCond %{QUERY_STRING} base64_(en|de)code[^(]*\([^)]*\) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} ^.*(\[|\]|\(|\)|<|>).* [NC,OR]
+RewriteCond %{QUERY_STRING} (NULL|OUTFILE|LOAD_FILE) [OR]
+RewriteCond %{QUERY_STRING} (\./|\../|\.../)+(motd|etc|bin) [NC,OR]
+RewriteCond %{QUERY_STRING} (localhost|loopback|127\.0\.0\.1) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+RewriteCond %{QUERY_STRING} concat[^\(]*\( [NC,OR]
+RewriteCond %{QUERY_STRING} union([^s]*s)+elect [NC,OR]
+RewriteCond %{QUERY_STRING} union([^a]*a)+ll([^s]*s)+elect [NC,OR]
+RewriteCond %{QUERY_STRING} (;|<|>|'|"|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|insert|drop|delete|update|cast|create|char|convert|alter|declare|order|script|set|md5|benchmark|encode) [NC,OR]
+RewriteCond %{QUERY_STRING} (sp_executesql) [NC]
+RewriteRule ^(.*)$ - [F,L]
+
+
+#ErrorDocument 400 http://localhost/Z-Admin/404.php
+#ErrorDocument 401 http://localhost/Z-Admin/404.php
+#ErrorDocument 403 http://localhost/Z-Admin/404.php
+#ErrorDocument 404 http://localhost/Z-Admin/404.php
+#ErrorDocument 500 http://localhost/Z-Admin/404.php
+
+
+
+# Disable Directory Browsing
+options All -Indexes
+
+#turn rewrite engine On
+RewriteEngine on
+
+
+#RewriteRule ^activate-account$ active_account.php
+#RewriteRule ^active-controller$ controller/active_controller.php
+#RewriteRule ^controll$ check_controll.php
+#RewriteRule ^register-account$ register.php
+#RewriteRule ^register-account-controller$ controller/register_controller.php
+#RewriteRule ^checkEmail-controller$ controller/checkEmail_controller.php
+#RewriteRule ^checkUsername-controller$ controller/checkUsername_controller.php
+#RewriteRule ^config-account$ configdatabase.php
+#RewriteRule ^config-controller$ controller/config_controller.php
+
+RewriteRule ^login-account$ login.php
+RewriteRule ^login-controller$ controller/user/login_controller.php
+
+
+
+RewriteRule ^logout-account$ logout.php
+#RewriteRule ^login-client-controller$ controller/login_client_controller.php
+
+RewriteRule ^dashboard$ index.php
+
+# Start Article ---------------------------------------------------------------------------------------------------------------
+
+RewriteRule ^list-articles$ article_list.php
+RewriteRule ^new-article$ article_new.php
+RewriteRule ^controller-upload-image$ controller/upload_image_controller.php
+RewriteRule ^controller-list-images$ controller/list_all_image_controller.php
+
+RewriteRule ^controller-new-article$ controller/article/new-article_controller.php
+RewriteRule ^controller-list-articles$ controller/article/list_articles_controller.php
+RewriteRule ^controller-edit-article$ controller/article/edit-article_controller.php
+RewriteRule ^controller-delete-article$ controller/article/delete-article_controller.php
+RewriteRule ^controller-status-article$ controller/article/status-article_controller.php
+
+
+# End General Ledger ---------------------------------------------------------------------------------------------------------------
+
+
+
+# promotion --------------------------------------------------------------------------------------------------------------
+	
+RewriteRule ^promotion$ promotion.php
+RewriteRule ^controller-create-promotion$ controller/promotion/insert_controller.php
+RewriteRule ^controller-list-promotion$ controller/promotion/list_controller.php
+RewriteRule ^controller-edit-promotion$ controller/promotion/edit_controller.php
+RewriteRule ^controller-delete-promotion$ controller/promotion/delete_controller.php
+
+
+
+RewriteRule ^slideshow$ slideshow.php
+RewriteRule ^controller-create-slideshow$ controller/slideshow/insert_controller.php
+RewriteRule ^controller-list-slideshow$ controller/slideshow/list_controller.php
+RewriteRule ^controller-edit-slideshow$ controller/slideshow/edit_controller.php
+RewriteRule ^controller-delete-slideshow$ controller/slideshow/delete_controller.php
+
+
+RewriteRule ^item$ item_list.php
+RewriteRule ^controller-create-item$ controller/item/insert_controller.php
+RewriteRule ^controller-list-item$ controller/item/list_controller.php
+RewriteRule ^controller-edit-item$ controller/item/edit_controller.php
+RewriteRule ^controller-delete-item$ controller/item/delete_controller.php
+
+
+
+
+

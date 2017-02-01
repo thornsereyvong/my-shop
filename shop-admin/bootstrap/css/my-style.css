@@ -1,0 +1,9 @@
+@media (min-width: 768px) {
+  .mytitle-box{
+  	float:right;
+  }
+}
+.loading{
+	background-image: url("../../img/loading.gif");
+	width:25px;
+}
