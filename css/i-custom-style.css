@@ -1,0 +1,37 @@
+.s-mobile{
+	
+}
+.i-custom-search{
+	
+}
+.s-detail-product{
+	height: 70px !important;
+}
+@media only screen and (max-width: 768px) {
+   .s-mobile{
+		height: 130px !important;
+		color:red;
+	}
+	.s-detail-product{
+		height: 150px !important;
+	}
+}
+
+@media only screen and (min-width: 770px) {
+	.s-detail-product{
+		height: 200px !important;
+	}
+	.i-custom-search{
+	
+	}
+}
+@media only screen and (min-width: 990px) {
+	.s-detail-product{
+		height: 150px !important;
+	}
+}
+@media only screen and (min-width: 1200px) {
+	.s-detail-product{
+		height: 70px !important;
+	}
+}
