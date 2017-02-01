@@ -1,0 +1,513 @@
+/**
+* Transition-timing-function property@mixin 
+*/
+/*background RGBA
+============================================*/
+/****/
+/* RIGHT TO LEFT */
+/**
+ * Web Application Prefix Apply For Making Owner Styles
+ */
+/**
+ *   Blocks Layout Selectors 
+ */
+/***********************************************************************/
+/** CHECKOUT BY STEP */
+@media (max-width: 1196px) and (min-width: 992px) {
+  .editortool .label-customize {
+    display: none;
+  }
+
+  body.sidebar-default #topbar .bt-menu-trigger {
+    left: 20px;
+  }
+}
+@media (min-width: 1200px) {
+  #guestTracking .form-group {
+    overflow: hidden;
+  }
+  #guestTracking .form-group i {
+    padding-left: 10px;
+  }
+  .rtl #guestTracking .form-group i {
+    padding-right: 10px;
+    padding-left: inherit;
+  }
+  #guestTracking .form-control {
+    float: left;
+  }
+  .rtl #guestTracking .form-control {
+    float: right;
+  }
+  #guestTracking label {
+    float: left;
+    clear: both;
+    width: 100%;
+  }
+  .rtl #guestTracking label {
+    float: right;
+  }
+}
+@media (max-width: 1199px) {
+  .zoomdiv {
+    display: none !important;
+  }
+
+  #header-main {
+    max-height: 500px;
+  }
+  #header-main #header_logo {
+    width: 100%;
+    text-align: center;
+  }
+
+  #blockleoblogstabs .blog-title {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  .footer-container .block {
+    min-height: 120px;
+  }
+
+  .banner-image .top-banner h6 {
+    margin: 16px 0;
+  }
+  .banner-image .top-banner h4 a {
+    margin: 20px 0 17px 0px;
+  }
+
+  #center_column .title_block {
+    font-size: 24px;
+  }
+}
+@media (max-width: 991px) {
+  #header-right {
+    text-align: center;
+    padding-bottom: 20px;
+    position: relative;
+  }
+  #header-right #leo-megamenu {
+    float: none !important;
+    display: block;
+    text-align: center;
+  }
+  #header-right #leo-megamenu .dropdown-menu {
+    top: 65px;
+  }
+  #header-right .pull-right {
+    float: left !important;
+  }
+  #header-right .popup-over {
+    float: right !important;
+    text-align: left;
+  }
+  #header-right .popup-content {
+    left: -100px;
+    text-align: left;
+  }
+  #header-right #search_block_top {
+    width: 300px;
+  }
+  #header-right #search_block_top form#searchbox input.search_query {
+    width: 300px;
+    border: 1px solid #f4f4f4;
+    padding: 6px 36px 6px 12px;
+  }
+  .rtl #header-right #search_block_top form#searchbox input.search_query {
+    padding: 6px 12px 6px 36px;
+  }
+  #header-right #search_block_top form#searchbox .btn {
+    left: auto;
+    right: 0;
+  }
+  .rtl #header-right #search_block_top form#searchbox .btn {
+    right: auto;
+    left: auto;
+  }
+  .rtl #header-right #search_block_top form#searchbox .btn {
+    left: 0;
+    right: auto;
+  }
+  #header-right #search_block_top form#searchbox:hover input.search_quer {
+    width: 300px;
+  }
+  #header-right .cart_block {
+    right: auto;
+    left: 0px;
+  }
+
+  .navbar-nav {
+    float: none !important;
+  }
+
+  .float-vertical.active > .block_content {
+    position: relative;
+  }
+
+  body.sidebar-default #topbar .bt-menu-trigger {
+    left: 10px;
+  }
+
+  #leo-verticalmenu .open > .dropdown-menu {
+    max-width: 100%;
+    position: relative;
+    left: auto !important;
+    width: 100% !important;
+    top: 100%;
+  }
+
+  div.verticalmenu .navbar-nav {
+    margin: 0;
+  }
+
+  .header_user_info .popup-title {
+    display: block;
+  }
+
+  .dropdown-menu > li > a {
+    padding: 3px 0;
+  }
+
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background: transparent;
+  }
+
+  ul.links li .fa, ul.links li .icon {
+    width: 10px;
+  }
+
+  body.sidebar-default #leo-verticalmenu div.verticalmenu .navbar-nav > li > a {
+    text-align: left;
+  }
+  body.sidebar-default #leo-verticalmenu div.verticalmenu .navbar-nav > li > a .fa {
+    display: none;
+  }
+  body.sidebar-default #leo-verticalmenu div.verticalmenu .navbar-nav > li > a .menu-title {
+    margin: 0px;
+  }
+
+  .banner-image img {
+    margin: auto;
+  }
+
+  .margin-bottom-50 {
+    margin-bottom: 50px;
+  }
+
+  #blockleoblogstabs .i-blog .blog-shortinfo {
+    height: 30px;
+    margin: 14px 0;
+  }
+
+  .content_bottom:hover .carousel-control.left {
+    left: -10px;
+  }
+  .content_bottom:hover .carousel-control.right {
+    right: -10px;
+  }
+
+  #cavas_menu .navbar-toggle {
+    margin-bottom: 20px;
+  }
+
+  .off-canvas-active {
+    overflow: visible;
+  }
+  .off-canvas-active .product-block:hover .image img {
+    visibility: visible;
+    opacity: 1;
+    filter: alpha(opacity=100);
+  }
+
+  body.lang_fr #leo-megamenu .navbar-nav > li > a, body.lang_de #leo-megamenu .navbar-nav > li > a, body.lang_ru #leo-megamenu .navbar-nav > li > a, body.lang_pl #leo-megamenu .navbar-nav > li > a {
+    padding: 15px 10px;
+  }
+  body.lang_ru #leo-megamenu .navbar-nav > li > a {
+    font-size: 12px;
+  }
+
+  .bg-blue {
+    margin-right: -15px;
+  }
+
+  .shipping {
+    padding-left: 0px;
+  }
+
+  #page {
+    position: relative;
+    z-index: 1001;
+    background-color: #f4f4f4;
+  }
+}
+@media (max-width: 769px) {
+  html {
+    background: none;
+  }
+
+  .navbar-header .navbar-toggle {
+    display: block;
+    float: left;
+    margin: 0;
+    width: 40px;
+  }
+  .rtl .navbar-header .navbar-toggle {
+    float: right;
+  }
+
+  .bt-menu-trigger {
+    display: none;
+  }
+
+  body.double-menu #header {
+    position: relative;
+  }
+  body.double-menu #topbar {
+    padding-left: 0;
+  }
+  body.double-menu #topbar .bt-menu-trigger {
+    top: auto;
+    bottom: 25px;
+    left: auto;
+    right: 12px;
+    display: none;
+  }
+  body.sidebar-default #topbar {
+    padding-left: 0;
+  }
+
+  #off-canvas-nav {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    visibility: visible;
+  }
+
+  .collapse.navbar-collapse {
+    display: none !important;
+  }
+
+  .navbar-nav {
+    float: none;
+  }
+
+  #header-right .row {
+    margin: 0px;
+  }
+  #header-right .row .widget.col-lg-3 {
+    position: absolute;
+    padding: 0px;
+    top: 52px;
+    left: 0px;
+    width: 100%;
+    z-index: 100;
+  }
+  #header-right #leo-verticalmenu {
+    padding: 1px 10px 0px 20px;
+    text-align: left;
+  }
+
+  .footer-container .block {
+    min-height: 0px;
+  }
+
+  #footer {
+    padding: 0px 15px 10px 15px;
+  }
+  #footer .title_block {
+    margin-bottom: 0px;
+  }
+}
+@media (max-width: 600px) {
+  .carousel:hover .carousel-control.left {
+    left: -5px;
+  }
+  .carousel:hover .carousel-control.right {
+    right: -5px;
+  }
+
+  .icenter .i-blog .content {
+    width: 100% !important;
+    float: none !important;
+    padding: 15px;
+  }
+  .icenter .i-blog .image {
+    float: none !important;
+    max-width: 100%;
+    width: 100% !important;
+  }
+
+  #footer {
+    padding: 0px 15px 10px 15px;
+  }
+  #footer .title_block {
+    margin-bottom: 15px;
+  }
+
+  .footer-container .block {
+    min-height: 0;
+  }
+
+  #center_column #newsletter_block_left form {
+    width: 100%;
+    height: auto;
+  }
+  #center_column #newsletter_block_left form .newsletter-input, #center_column #newsletter_block_left form .btn {
+    float: none;
+    margin: auto;
+    width: 100%;
+  }
+  #center_column #newsletter_block_left form .btn {
+    margin-top: 20px;
+  }
+
+  #header-right {
+    position: relative;
+  }
+  #header-right .blockcart_top {
+    position: absolute;
+    right: 60px;
+    top: 8px;
+  }
+  .rtl #header-right .blockcart_top {
+    left: 60px;
+    right: auto;
+  }
+  #header-right #search_block_top {
+    width: 380px;
+  }
+  #header-right #search_block_top form#searchbox input.search_query {
+    width: 380px;
+    border: 1px solid #f4f4f4;
+    padding: 6px 36px 6px 12px;
+  }
+  .rtl #header-right #search_block_top form#searchbox input.search_query {
+    padding: 6px 12px 6px 36px;
+  }
+  #header-right #search_block_top form#searchbox .btn {
+    left: auto;
+    right: 0;
+  }
+  .rtl #header-right #search_block_top form#searchbox .btn {
+    right: auto;
+    left: auto;
+  }
+  .rtl #header-right #search_block_top form#searchbox .btn {
+    left: 0;
+    right: auto;
+  }
+  #header-right #search_block_top form#searchbox:hover input.search_quer {
+    width: 300px;
+  }
+  #header-right .popup-content {
+    left: -30px;
+  }
+
+  .header-container {
+    position: relative;
+  }
+  .header-container #topbar {
+    position: static;
+  }
+  .header-container #topbar .container {
+    position: static;
+  }
+  .header-container #topbar .container #search_block_top {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    z-index: 999;
+    width: 80%;
+    height: 38px;
+  }
+  .header-container #topbar .container #search_block_top input.search_query {
+    width: 100%;
+    border: 1px solid #ccc;
+    color: #767470;
+    height: 38px;
+  }
+
+  .content_bottom {
+    padding: 20px;
+    background-size: 100% 100%;
+  }
+}
+@media (max-width: 480px) {
+  #layer_cart .layer_cart_cart .button-container {
+    text-align: center;
+  }
+
+  #layer_cart .layer_cart_cart .button-container .btn {
+    float: none!important;
+    margin-bottom: 10px;
+  }
+
+  #thumbs_list {
+    margin-left: 37px;
+    width: 230px !important;
+  }
+  #thumbs_list #thumbs_list_frame {
+    height: auto !important;
+  }
+  #thumbs_list #thumbs_list_frame li {
+    height: 50px;
+    width: 50px;
+  }
+
+  body.product .nav-tabs > li {
+    display: block;
+    float: none;
+    border: 1px solid #ddd !important;
+    margin-bottom: 10px;
+  }
+
+  #header-right #search_block_top {
+    width: 300px;
+  }
+  #header-right #search_block_top form#searchbox input.search_query {
+    width: 300px;
+    border: 1px solid #f4f4f4;
+    padding: 6px 36px 6px 12px;
+  }
+  .rtl #header-right #search_block_top form#searchbox input.search_query {
+    padding: 6px 12px 6px 36px;
+  }
+  #header-right #search_block_top form#searchbox .btn {
+    left: auto;
+    right: 0;
+  }
+  .rtl #header-right #search_block_top form#searchbox .btn {
+    right: auto;
+    left: auto;
+  }
+  .rtl #header-right #search_block_top form#searchbox .btn {
+    left: 0;
+    right: auto;
+  }
+  #header-right #search_block_top form#searchbox:hover input.search_quer {
+    width: 300px;
+  }
+}
+@media (max-width: 320px) {
+  .blockcart_top {
+    width: 50%;
+    clear: both;
+    margin: auto;
+    text-align: center;
+    float: none !important;
+  }
+
+  .popup-over .popup-content {
+    left: -40px;
+  }
+
+  #header-right .blockcart_top {
+    top: 18px;
+  }
+  #header-right #search_block_top {
+    width: 145px;
+  }
+  #header-right #search_block_top form#searchbox input.search_query {
+    width: 145px;
+  }
+}
