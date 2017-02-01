@@ -1,1 +1,1 @@
-# my-shop
+# we-shop

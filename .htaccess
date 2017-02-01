@@ -1,0 +1,17 @@
+
+# BEGIN WordPress
+#<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteRule ^products$ product.php
+RewriteRule ^products/([a-zA-Z0-9_-]+)$ product.php?fr=$1
+RewriteRule ^products/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ product.php?fr=$1&sd=$2
+RewriteRule ^products/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ product.php?fr=$1&sd=$2&th=$3
+#</IfModule>
+
+
+
+
+
+
+# END WordPress
