@@ -30,6 +30,6 @@
 	include_once 'Model/user/User.DAO.php';
 	
 	
-	$server = "http://localhost/we-shop/shop-admin/";
+	$server = "http://localhost/my-shop/shop-admin/";
 	
 ?>
