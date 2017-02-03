@@ -1,6 +1,6 @@
 <?php
 	
-	$server = "http://localhost/we-shop/";
+	$server = "http://localhost/my-shop/";
 	include_once 'connection/DBConnection.php';
 	
 	$dbh = new DBConnection('localhost', 'temp_pos', 'root', '');
