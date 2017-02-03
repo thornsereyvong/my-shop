@@ -24,14 +24,9 @@
 						<section id="center_column" class="col-md-12">
 							<div class="clearfix">
 								<div class="nopadding margin-30-70 clearfix">
-									
 									<?php   include 'layout/top-content.php';?>
-									
-									
 								</div>
-								
 								<?php include 'top-product.php';?>
-								
 							</div>
 						</section>
 					</div>
