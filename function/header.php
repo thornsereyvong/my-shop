@@ -1,5 +1,5 @@
 <?php
-
+	
 	function getCategory($dbh){
 		$data=array();
 		try{			
@@ -75,6 +75,40 @@
 	}
 	
 	
+	
+	function getChild_data($category){
+		global $str;
+		if(count($category)>0){
+			foreach ($category as $c){																													
+				$str .= "'".$c['var_id']."', " ;
+				getChild_data(getChildMain($c['var_id']));					
+			}			
+			return;
+		}else{
+			return;
+		}
+	}
+	
+	function genStr($n){
+		$str = "";
+		for($i=0;$i<$n;$i++){
+			$str .="--> ";
+		}
+		return $str;
+	}
+	
+	function getChildMain($catId){
+		global $category;
+		$cat = array();
+		if(count($category)>0){
+			foreach ($category as $c){
+				if($c['var_parentid'] == $catId){
+					$cat[] = $c;
+				}
+			}
+		}
+		return $cat;
+	}
 	
 	
 	
