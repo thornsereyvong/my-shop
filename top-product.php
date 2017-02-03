@@ -1,21 +1,25 @@
 
-
-
-
-
-
-<?php for($y=0; $y<2;$y++){ ?>
+<?php 
+	for($y=0; $y< count($main_cat_dis);$y++){ 
+?>
 <div class="row">
 	<div class="widget col-lg-12 col-md-12 col-sm-12 col-xs-12 col-sp-12">
 		<div class="block products_block exclusive leomanagerwidgets">
 			<h4 class="title_block">
-				<span>Shop Gentlemen</span> <br /> 
-				<em>Perennial Favorites from Every Category</em>
+				<span><?php echo $main_cat_dis[$y]['var_name'];?></span> <br /> 
+				<em><?php echo $main_cat_dis[$y]['var_remark'];?></em>
 			</h4>
 			<div class="block_content row">
 				<div id="tab_pro_<?php echo $y; ?>" class="owl-carousel owl-theme grid">
 				
 				<!-- start item -->
+					
+					<?php 
+						getChild_data(getChildMain($main_cat_dis[$y]['var_id']));
+						echo $str;
+						$str = "";
+					?>
+					
 					
 					<?php for($i=0;$i<10;$i++){ ?>
 					
