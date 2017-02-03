@@ -1,6 +1,6 @@
 <?php
 
-define("SQL_DSN", 'mysql:dbname=temp_pos;host=localhost');
+define("SQL_DSN", 'mysql:dbname=web_report;host=localhost');
 define("SQL_USERNAME", 'root');
 define("SQL_PASSWORD", '');
 
