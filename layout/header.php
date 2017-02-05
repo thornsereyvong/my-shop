@@ -2,7 +2,6 @@
 	include 'function/header.php';
 	$category = getCategory($dbh);
 	$str = "";
-	//getChild_data(getChildMain(''));
 	$main_cat_dis = getChildMain('');
 ?>
 
