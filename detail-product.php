@@ -1,5 +1,20 @@
 
-<?php include 'app.php';?>
+<?php 
+	include 'app.php';
+	include 'function/item.php';
+	$price_level = getPriceLevel($dbh);
+	$items = listItemByItemGroup($dbh,'PRINTED-DRESS',$price_level);
+	$group = "";
+	$itemId = "";
+	if(count($items)>0){
+		$itemId = $items[0]['var_id'];
+		$group = $items[0]['var_categoryid'];
+	}
+	
+	$items_relate = listItemByCatId($dbh,$group,$itemId, 10,$price_level);
+	
+
+?>
 
 <!DOCTYPE HTML>
 <html lang="en-us" class="default">
@@ -16,6 +31,14 @@
 				
 		<?php include 'layout/header.php';?>
 		<div class="s-detail-product"></div>
+		<?php 				
+			//echo "<pre>";
+			
+			//print_r($items_relate);
+			
+			//echo "</pre>";
+		?>
+		
 		<section id="columns" class="columns-container">
 			<div class="container">
 				<div class="row">
@@ -293,6 +316,16 @@
 		</section>
 		<?php include 'layout/footer.php';?>
 	</section>
+	<script>
+
+		var dataObj = '<?php if(count($items)>0) echo json_encode($items); ?>';
+
+	 	var dataObj = JSON.parse(dataObj);
+
+		
+	</script>
+	
+	
 	
 </body>
 </html>

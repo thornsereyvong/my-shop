@@ -43,6 +43,7 @@ function listItemByCategory($dbh,$cat, $top,$price_level){
 				ORDER BY g.datt_createdate desc,g.var_id) as tbl_item
 				GROUP BY tbl_item.var_id
 	   	";
+		
 		$req = $dbh->prepare($sql);
 		$req->execute();
 		$num = $req->rowCount();
@@ -58,6 +59,72 @@ function listItemByCategory($dbh,$cat, $top,$price_level){
 	}
 }
 
+function listItemByCatId($dbh,$group,$itemId, $top,$price_level){
+	$data=array();
+	try{
+		$sql = "
+				SELECT tbl_item.* , MIN(tbl_item.price_web) 'min_price'
+				FROM
+				       (SELECT g.var_id, g.var_name, g.var_remark, i.var_urlimg, i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color,
+					   COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['com_price']."' LIMIT 1) ,0) AS price_com,
+				       COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['web_price']."' LIMIT 1) ,0) AS price_web
+				       FROM (SELECT * FROM config_item_group WHERE var_categoryid = :group AND var_id  <> :itemId LIMIT $top) as g
+				       LEFT JOIN config_item i on g.var_id=i.var_groupid
+				       LEFT JOIN config_item_factor itf ON i.var_id = itf.var_id
+				       WHERE g.tin_inactive = 0 AND i.tin_inactive = 0
+				       ORDER BY g.datt_createdate desc,g.var_id) as tbl_item
+				       GROUP BY tbl_item.var_id
+				       ";
+
+				       $req = $dbh->prepare($sql);
+				       $req->bindParam(":group", $group);
+				       $req->bindParam(":itemId", $itemId);
+				       $req->execute();
+				       $num = $req->rowCount();
+				       if($num != 0){
+				       	while($rows = $req->fetch(PDO::FETCH_ASSOC)){
+				       		$data[] = $rows;
+				       	}
+				       	return $data;
+				       }
+				       $req->closeCursor();
+	}catch(PDOException $cus){
+		return $data;
+	}
+}
+
+
+function listItemByItemGroup($dbh,$group, $price_level){
+	$data=array();
+	try{
+		$sql = "
+				SELECT g.var_id, g.var_name, g.var_remark, g.var_categoryid, i.var_urlimg, i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color, 
+				       COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['com_price']."' LIMIT 1) ,0) AS price_com, 
+				       COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['web_price']."' LIMIT 1) ,0) AS price_web 
+				FROM (SELECT * FROM config_item_group WHERE var_id= :group) as g 
+				
+				LEFT JOIN config_item i on i.var_groupid = :group
+				LEFT JOIN config_item_factor itf ON i.var_id = itf.var_id 
+				
+				WHERE g.tin_inactive = 0 AND i.tin_inactive = 0 
+				ORDER BY g.datt_createdate desc,g.var_id
+	       ";
+
+       $req = $dbh->prepare($sql);
+       $req->bindParam(":group", $group);
+       $req->execute();
+       $num = $req->rowCount();
+       if($num != 0){
+       		while($rows = $req->fetch(PDO::FETCH_ASSOC)){
+       		$data[] = $rows;
+       }
+       return $data;
+    }
+       $req->closeCursor();
+	}catch(PDOException $cus){
+		return $data;
+	}
+}
 function getPriceLevel($dbh){
 	$data=array();
 	try{
