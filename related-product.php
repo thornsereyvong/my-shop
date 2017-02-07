@@ -45,7 +45,7 @@
 												with a straw hat and you're ready for summer!</p>
 											<div class="content_price">
 												<span itemprop="price" class="price product-price">
-													$16.51 </span>
+													$<?php echo $i; ?> </span>
 												<meta itemprop="priceCurrency" content="USD" />
 											</div>
 											<div class="product-flags"></div>

@@ -140,7 +140,7 @@
 												<h2 class="page-subheading">Send to a friend</h2>
 												<div class="row">
 													<div class="product clearfix col-xs-12 col-sm-6">
-														<img src="<?php echo $server; ?>images/173-home_default/printed-dress.jpg" alt="Printed Dress" />
+														<!-- <img src="" alt="Printed Dress" /> -->
 														<div class="product_desc">
 															<p class="product_name">
 																<strong>Printed Dress</strong>
