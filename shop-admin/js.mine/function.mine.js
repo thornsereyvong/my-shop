@@ -131,7 +131,9 @@ function reloadForm(time){
 	setTimeout(function(){ location.reload(); },time);
 }
 
-
+function ndis(data){
+	$("#errors").append(data);
+}
 
 function checkDate(date) {
 	if (date != '') {
