@@ -43,7 +43,7 @@
 								<button type="submit" class="bv-hidden-submit"
 									style="display: none; width: 0px; height: 0px;"></button>
 								<div class="form-group">
-									<input type="text" name="kts_username" value="admin" id="kts_username"
+									<input type="text" name="kts_username" value="ROOT" id="kts_username"
 										class="form-control" placeholder="USERNAME" data-bv-field="kts_username">
 		
 									<small class="help-block" data-bv-validator="regexp"
@@ -54,7 +54,7 @@
 										style="display: none;">The username is required and cannot be empty</small>
 								</div>
 								<div class="form-group">
-									<input type="password" value="111" name="kts_password" id="kts_password"
+									<input type="password" value="" name="kts_password" id="kts_password"
 										class="form-control" placeholder="PASSWORD"
 										data-bv-field="kts_password"> <small class="help-block"
 										data-bv-validator="notEmpty" data-bv-for="kts_password"
@@ -110,7 +110,9 @@
 								message: 'The username is required and cannot be empty'
 							}
 						}                    
-					},
+					}
+/*
+					,
 					kts_password: {
 						validators: {// check password is exist or not
 							notEmpty: {
@@ -118,6 +120,7 @@
 							}
 						}
 					}
+				*/
 			
 				}
 			}).on('success.form.bv', function(e) {			

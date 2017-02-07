@@ -28,15 +28,13 @@
 	<link rel="stylesheet" href="<?php echo $server; ?>dist/css/AdminLTE.min.css">
 	<link rel="stylesheet" href="<?php echo $server; ?>dist/css/skins/_all-skins.min.css">
 	<link rel="stylesheet" href="<?php echo $server; ?>bootstrap/css/my-style.css">
-
-	
 	<link rel="stylesheet" href="<?php echo $server; ?>angular/css/angular-material.css">
 	<link rel="stylesheet" href="<?php echo $server; ?>angular/css/loading-bar.css">
 	<link rel="stylesheet" href="<?php echo $server; ?>dist/sweetalert/sweetalert.css">
+	 
 	 	  	   	 
   	<script src="<?php echo $server; ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
 	<script src="<?php echo $server; ?>bootstrap/js/jquery-ui.min.js"></script>
-	
 	<script src="<?php echo $server; ?>angular/angular.min.js"></script>
 	<script src="<?php echo $server; ?>angular/angular-material.min.js"></script>
 	<script src="<?php echo $server; ?>angular/angular-animate.min.js"></script>
@@ -46,8 +44,14 @@
 	<script src="<?php echo $server; ?>angular/dirPagination.js"></script>
 	
 	<style>
-		.requrie{
-			color: #dd4b39;
+		.requrie{ color: #dd4b39;}
+		.has-error .select2-selection {
+		    border: 1px solid #a94442;
+		    border-radius: 2px;
 		}
+		.has-success .select2-selection{
+			border: 1px solid #00a65a;
+		    border-radius: 2px;
+		}	
 	</style>
   	

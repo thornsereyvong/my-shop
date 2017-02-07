@@ -13,8 +13,10 @@
 	$title = "Item";
 	include_once 'app.php';
 	include 'Model/category/category.DAO.php';
-	$category_data = $category->listCategory();
 	include 'Model/brand/brand.DAO.php';
+	
+	
+	$category_data = $category->listCategory();
 	$brand_data = $brand->listBrand();
 	
 ?>
@@ -53,9 +55,11 @@
 				$scope.listPromotion = function(){					
 					$http({
 					    method: 'POST',
-					    url: server+'controller-list-promotion',
-					    data:{"catId": "promotion"}		    
-					}).success(function(response) {		
+					    url: server+'controller-list-product',	    
+					}).success(function(response) {
+						
+						dis(response)
+								
 						if(response.MESSAGE == "FOUNDED"){													
 							$scope.promotion = response.DATA;	    					
 						}else{
@@ -349,8 +353,21 @@
 									message: 'The category is required and cannot be empty'
 								}
 							} 
+						},
+						showInPos: {
+	                        validators: {
+								notEmpty: {
+									message: 'The show POS is required and cannot be empty'
+								}
+							} 
+						},
+						status: {
+	                        validators: {
+								notEmpty: {
+									message: 'The status is required and cannot be empty'
+								}
+							} 
 						}
-						
 					}
 				});
 				

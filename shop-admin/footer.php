@@ -31,14 +31,10 @@
     <script src="<?php echo $server; ?>dist/sweetalert/sweetalert-dev.js"></script>
 	<script src="<?php echo $server; ?>plugins/ckeditor/ckeditor.js"></script>
 	
-	
-	
-	
 	<script>
 		$.widget.bridge('uibutton', $.ui.button); 	
       	$(function () {
         	$(".select2").select2();
       	});
 	</script>
-	</body>
-</html>
+	
