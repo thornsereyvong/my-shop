@@ -1,5 +1,13 @@
 
-<?php include 'app.php';?>
+<?php 
+	include 'app.php';
+	include 'function/item.php';
+	$price_level = getPriceLevel($dbh);
+	getChild_data(getChildMain('WOMAN'));
+	$str .= '\'WOMAN\'';
+	$items = listItemByCategory($dbh,$str,10,$price_level);
+
+?>
 
 <!DOCTYPE HTML>
 <html lang="en-us" class="default">
