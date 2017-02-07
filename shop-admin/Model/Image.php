@@ -101,9 +101,7 @@
 				}
 				$req->closeCursor();
 			}catch(PDOException $e){				
-			}finally {
-				return $data;
 			}
-			
+			return $data;
 		}
 	}
