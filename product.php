@@ -9,11 +9,9 @@
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
 
-<?php include 'layout/head.php';?>
+	<?php include 'layout/head.php';?>
 	<script type="text/javascript">
-		/* <![CDATA[ */;
-		var page_name='category';		
-		/* ]]> */
+		var page_name='category';
 	</script>
 
 
@@ -25,17 +23,44 @@
 		<?php include 'layout/header.php';?>
 		<div class="s-detail-product"></div>
 		
-		<?php 		
-			$price_level = getPriceLevel($dbh);
-			getChild_data(getChildMain('WOMEN'));
+		<?php
 			
-			$str .= '\'WOMEN\'';
-			$items = listItemByCategory($dbh,$str,10,$price_level);
-			//echo "<pre>";
-			//print_r(getChildMain('WOMEN'));
-			//echo "</pre>";
-			//print_r($items);
-		//exit();
+			$act_product= "active";
+			$act_con = "";
+			$act_about = "";
+			$act_home = "";
+			$act_document = "";
+			$act_service = "";
+			$act_solution = "";
+			$act_search = "";
+			
+			$row_limit =1;
+			
+			
+			$first = "";
+			$second = "";
+			$third = "";
+			$cat_search = "";
+			if(isset($_GET['fr']))
+				$first = $_GET['fr'];
+			if(isset($_GET['sd']))
+				$second = $_GET['sd'];
+			if(isset($_GET['th']))
+				$third = $_GET['th'];
+			
+			if($first != "" && $third != "" && $second != ""){
+				$cat_search = $third;
+			}elseif ($first != "" && $third == "" && $second != ""){
+				$cat_search = $second;
+			}elseif ($first != "" && $third == "" && $second == ""){
+				$cat_search = $first;
+			}
+			
+			$cat_search = getChildMainAlias($cat_search);
+			
+			$price_level = getPriceLevel($dbh);
+			getChild_data(getChildMain($cat_search));			
+			$str .= '\''.$cat_search.'\'';
 		?>
 		
 		
@@ -51,39 +76,53 @@
 								<a class="home" href="<?php echo $server; ?>" title="Return to Home"><i class="fa fa-home"></i></a> 
 								<span class="navigation-pipe">&gt;</span> 
 								<span class="navigation_page">
-									<span>
-										<a href="#" title="">
-											<span>Women</span>
-										</a>
-									</span>
-									<span class="navigation-pipe">&gt;</span>
-									Tops
+									<?php 
+									
+									$cur_cat = "";	
+									if($first != "" && $third != "" && $second != ""){										
+										echo '<span><a href="'.$server.'/'.$first.'" title=""><span>'.getChildMainAliasName($first).'</span></a></span>';
+										echo '<span class="navigation-pipe">&gt;</span>';
+										echo '<span><a href="'.$server.'/'.$first.'/'.$second.'" title=""><span>'.getChildMainAliasName($second).'</span></a></span>';
+										echo '<span class="navigation-pipe">&gt;</span>';
+										echo getChildMainAliasName($third);										
+										$cur_cat = getChildMainAliasName($third);										
+									}elseif ($first != "" && $third == "" && $second != ""){
+										echo '<span><a href="'.$server.'/'.$first.'" title=""><span>'.getChildMainAliasName($first).'</span></a></span>';
+										echo '<span class="navigation-pipe">&gt;</span>';
+										echo getChildMainAliasName($second);
+										$cur_cat = getChildMainAliasName($second);
+									}elseif ($first != "" && $third == "" && $second == ""){
+										echo '<span><a href="#" title=""><span>'.getChildMainAliasName($first).'</span></a></span>';
+										$cur_cat = getChildMainAliasName($first);
+									}
+									?>
+									
 								</span>
 							</div>
 						</div>
 						<!-- end header page -->
 						
-						<h1 class="page-heading product-listing">
-							<span class="cat-name"> Tops&nbsp; </span> 
-							<small class="heading-counter">There are 3 products.</small>
-						</h1>
-						
-						
 						<!-- start filter data -->
 						
+						<?php 
+							$pros =  listItemByCatByPage($dbh,$str,0,$row_limit,$price_level);
+							$count_pro = listItemByCatByPageCount($dbh,$str);
+							$index = 0;
+							$click_act = ceil($count_pro / $row_limit);
+							
+						?>
 						<div class="content_sortPagiBar clearfix">
 							<div class="sortPagiBar clearfix row">
 								<div class="col-sm-12">
 									<div class="sort">
 										<div class="display hidden-xs pull-left">
 											<div id="grid">
-												<a rel="nofollow" href="#" title="Grid"><i class="fa fa-th-large"></i></a>
+												<span class="cat-name" style="font-size: 15px;font-weight: 700;text-transform: uppercase;color: #2db6c2;"> <?php echo $cur_cat; ?>&nbsp; </span> 
+												<small class="heading-counter">There are <?php echo $count_pro; ?> products.</small>
 											</div>
-											<div id="list">
-												<a rel="nofollow" href="#" title="List"><i class="fa fa-th-list"></i></a>
-											</div>
+											
 										</div>
-										<form action="#" class="productsSortForm form-horizontal pull-right hidden-xs ">
+										<!-- <form action="#" class="productsSortForm form-horizontal pull-right hidden-xs ">
 											<div class="select">
 												<label for="">Sort by</label> 
 												<select class="form-control" id="shortItem">
@@ -96,7 +135,7 @@
 													<option value="reference:desc">Reference: Highest first</option>
 												</select>
 											</div>
-										</form>
+										</form> -->
 									</div>
 								</div>
 								
@@ -105,86 +144,82 @@
 						
 						<!-- end filter data -->
 						
-						<div class="">
+						<div class="" id="data_row_pro">
 							
-							<?php // displayItem($items); ?>	
+						<?php 
 							
+							if(count($pros)>0){
+								disMainItemStyle($pros, 'col-sm-3 col-xs-12');
+							}
 							
-							
-							<?php for($i=0;$i<10;$i++){ ?>
-					
-								<div class="col-sm-3 col-xs-12">
-									<div class="product-container product-block text-center" >
-										<div class="left-block">
-											<div class="product-image-container image ImageWrapper">
-												<div class="leo-more-info" data-idproduct="1"></div>
-												<a class="product_img_link" href="<?php echo $server; ?>detail-product.php" title="Faded Short Sleeve T-shirts" itemprop="url">
-													<img class="replace-2x img-responsive" src="<?php echo $server; ?>img/product/1/faded-short-sleeve-tshirts.jpg" alt="....." title="...." itemprop="image" />
-													
-													<span class="product-additional" data-idproduct="1">
-														<img class="replace-2x img-responsive" src="<?php echo $server; ?>img/product/1/blouse.jpg" alt="....." title="...." itemprop="image" />
-													</span>
-												</a>
-												
-												<span class="label-new label-info label">New</span>
-											</div>
-										</div>
-										<div class="right-block">
-											<div class="product-meta">
-												<h5 class="name">
-													<a class="product-name" href="<?php echo $server; ?>detail-product.php" title="Faded Short Sleeve T-shirts" itemprop="url">
-														Faded Short Sleeve T-shirts 
-													</a>
-												</h5>
-												<p class="product-desc" >Faded
-													short sleeve t-shirt with high neckline. Soft and
-													stretchy material for a comfortable fit. Accessorize
-													with a straw hat and you're ready for summer!</p>
-												<div class="content_price">
-													<span class="price product-price">
-														$<?php echo $i; ?> </span>
-													
-												</div>
-												<div class="product-flags"></div>
-												<div class="functional-buttons clearfix">
-													
-													<div class="cart">
-														<a class="button ajax_add_to_cart_button btn"
-															href="#"
-															rel="nofollow" title="Add to cart"
-															data-id-product="1" data-minimal_quantity="1"> <i
-															class="fa fa-shopping-cart"></i> <span>Add to
-																order</span>
-														</a>
-													</div>
-													
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
+						?>
 							
 						</div>
-						
 						
 						<div class="content_sortPagiBar">
 							<div class="bottom-pagination-content clearfix row">
-								<div class="col-md-10 col-sm-8 col-xs-6">
-									<div class="pagination clearfix">
-										
-									</div>
+								<div class="col-md-12" style="text-align: center;">
+									
+									<?php 
+										if($count_pro>$row_limit){ 
+											echo '<button id="view_more_pro" style="background-color: #2db6c2 !important; border-color: #2db6c2 !important;" class="btn btn-primary"><i class="fa fa-plus-circle"></i> MORE</button>';
+										}
+									?>
 								</div>								
 							</div>
+							<br>
 						</div>
-						
-						
 						
 					</section>
 				</div>
 			</div>
 		</section>
 		<?php include 'layout/footer.php';?>
+		
+		<script>
+			var start = 0;
+			var row_limit = <?php echo $row_limit; ?>;
+			var count_item_show = row_limit;
+			var btn_view_more_can_click = <?php echo $click_act; ?>;
+			var btn_view_more_click = 1;
+			var total_row = <?php echo $count_pro; ?>;
+			var search_text = "<?php echo $str; ?>";	
+			var server = '<?php echo $server; ?>';
+			var tDis = "list";
+
+			$(function(){
+				$("#view_more_pro").click(function(){  
+					start += row_limit; btn_view_more_click++;
+					if(btn_view_more_click <= btn_view_more_can_click){
+						$.ajax({
+							url: server+"ajax-list-product",
+							method: "POST",
+							data: {
+								search : search_text,
+								start : start,
+								row_limit : row_limit
+							},success: function(data){
+								$("#data_row_pro").append(data);
+							}
+						});
+
+						if(btn_view_more_click==btn_view_more_can_click){
+							$("#view_more_pro").attr("disabled","disabled");
+						}
+						
+					}else{
+						$("#view_more_pro").attr("disabled","disabled");
+					}
+				});
+
+			});
+
+
+			
+		</script>
+		
+	<div id="errors"></div>	
+		
 	</section>
 	
 </body>

@@ -37,7 +37,7 @@
 		$cat = getChild($cats['var_id'],$mainCat);
 		if(count($cat)>0){
 			echo '<li class="parent dropdown aligned-center">';
-				echo '<a class="dropdown-toggle has-category" data-toggle="dropdown" href="'.$server.'products/'.url($cats['var_id']).'" target="_self">';
+				echo '<a class="dropdown-toggle has-category" data-toggle="dropdown" href="'.$server.'products/'.url($cats['var_alias']).'" target="_self">';
 					echo '<span class="menu-title">'.$cats['var_name'].'</span><b class="caret"></b>';
 				echo '</a>';
 				echo '<div class="dropdown-menu level1">';
@@ -49,14 +49,14 @@
 									foreach ($cat as $s1){
 										$sub = getChild($s1['var_id'],$mainCat);
 										if(count($sub)>0){
-											echo '<div class="menu-title"><a href="'.$server.'products/'.url($cats['var_id']).'/'.url($s1['var_id']).'">'.$s1['var_name'].'</a></div>';
+											echo '<div class="menu-title"><a href="'.$server.'products/'.url($cats['var_alias']).'/'.url($s1['var_alias']).'">'.$s1['var_name'].'</a></div>';
 											echo '<ul>';
 											foreach ($sub as $s2){
-												echo '<li><a href="'.$server.'products/'.url($cats['var_id']).'/'.url($s1['var_id']).'/'.url($s2['var_id']).'">'.$s2['var_name'].'</a></li>';
+												echo '<li><a href="'.$server.'products/'.url($cats['var_alias']).'/'.url($s1['var_alias']).'/'.url($s2['var_id']).'">'.$s2['var_name'].'</a></li>';
 											}
 											echo '</ul>';
 										}else{
-											echo '<div class="menu-title"><a href="'.$server.'products/'.url($cats['var_id']).'/'.url($s1['var_id']).'">'.$s1['var_name'].'</a></div>';
+											echo '<div class="menu-title"><a href="'.$server.'products/'.url($cats['var_alias']).'/'.url($s1['var_alias']).'">'.$s1['var_name'].'</a></div>';
 										}
 									}									
 								echo '</div>';
@@ -66,7 +66,7 @@
 				echo '</div>';
 			echo '</li>';
 		}else{
-			echo '<li class=""><a href="'.$server.'products/'.url($cats['var_id']).'" target="_self" class="has-category"><span class="menu-title">'.$cats['var_name'].'</span></a></li>';
+			echo '<li class=""><a href="'.$server.'products/'.url($cats['var_alias']).'" target="_self" class="has-category"><span class="menu-title">'.$cats['var_name'].'</span></a></li>';
 		}		
 	}
 	
@@ -110,6 +110,32 @@
 		}
 		return $cat;
 	}
+	
+	function getChildMainAlias($alias){
+		global $category;
+		$cat = array();
+		if(count($category)>0){
+			foreach ($category as $c){
+				if($c['var_alias'] == $alias){
+					return $c['var_id'];
+				}
+			}
+		}
+		return "";
+	}
+	function getChildMainAliasName($alias){
+		global $category;
+		$cat = array();
+		if(count($category)>0){
+			foreach ($category as $c){
+				if($c['var_alias'] == $alias){
+					return $c['var_name'];
+				}
+			}
+		}
+		return "";
+	}
+	
 	function getFullCategory($catId){
 		global $category;
 		$cat = array();

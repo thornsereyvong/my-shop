@@ -4,9 +4,21 @@
 RewriteEngine On
 
 RewriteRule ^products$ product.php
+RewriteRule ^products/([a-zA-Z0-9_-]+)/$ product.php?fr=$1
+RewriteRule ^products/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/$ product.php?fr=$1&sd=$2
+RewriteRule ^products/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/$ product.php?fr=$1&sd=$2&th=$3
+RewriteRule ^products/$ product.php
 RewriteRule ^products/([a-zA-Z0-9_-]+)$ product.php?fr=$1
 RewriteRule ^products/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ product.php?fr=$1&sd=$2
 RewriteRule ^products/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ product.php?fr=$1&sd=$2&th=$3
+
+
+RewriteRule ^ajax-list-product$ ajax_list_product.php
+RewriteRule ^ajax-sent-mail$ ajax_sent_mail.php
+RewriteRule ^ajax-search$ ajax_search.php
+
+
+
 #</IfModule>
 
 

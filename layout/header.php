@@ -62,8 +62,7 @@
 																	showMainCat($s1,$category);
 																}
 															}
-														}
-																											
+														}																											
 														?>
 														
 													</ul>
