@@ -17,7 +17,8 @@ RewriteRule ^ajax-list-product$ ajax_list_product.php
 RewriteRule ^ajax-sent-mail$ ajax_sent_mail.php
 RewriteRule ^ajax-search$ ajax_search.php
 
-
+RewriteRule ^product/([a-zA-Z0-9_-]+)/$ detail-product.php?fr=$1
+RewriteRule ^product/([a-zA-Z0-9_-]+)$ detail-product.php?fr=$1
 
 #</IfModule>
 

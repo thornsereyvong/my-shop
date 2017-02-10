@@ -3,7 +3,7 @@ function listAllItem($dbh){
 	$data=array();
 	try{
 		$sql = "
-				SELECT g.var_id, g.var_name, g.var_remark, i.var_urlimg,
+				SELECT g.var_id, g.var_name, g.var_remark,g.var_alias, i.var_urlimg,
 						i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color,
 				       (SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid LIMIT 1) AS UnitPrice
 				FROM config_item_group g
@@ -33,7 +33,7 @@ function listItemByCategory($dbh,$cat, $top,$price_level){
 		$sql = "
 				SELECT tbl_item.* , MIN(tbl_item.price_web) 'min_price' 
 				FROM 
-				       (SELECT g.var_id, g.var_name, g.var_remark,g.datt_createdate, i.var_urlimg, i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color, 
+				       (SELECT g.var_id, g.var_name, g.var_remark,g.var_alias,g.datt_createdate, i.var_urlimg, i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color, 
 					   COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['com_price']."' LIMIT 1) ,0) AS price_com, 
 				       COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['web_price']."' LIMIT 1) ,0) AS price_web
 				FROM (SELECT * FROM config_item_group WHERE var_categoryid in ($cat) AND tin_inactive =0 LIMIT $top) as g 
@@ -66,7 +66,7 @@ function listItemByCatId($dbh,$group,$itemId, $top,$price_level){
 		$sql = "
 				SELECT tbl_item.* , MIN(tbl_item.price_web) 'min_price'
 				FROM
-			       (SELECT g.var_id, g.var_name, g.var_remark, i.var_urlimg, i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color,
+			       (SELECT g.var_id, g.var_name, g.var_remark,g.var_alias, i.var_urlimg, i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color,
 				   COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['com_price']."' LIMIT 1) ,0) AS price_com,
 			       COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['web_price']."' LIMIT 1) ,0) AS price_web
 			       FROM (SELECT * FROM config_item_group WHERE var_categoryid = :group AND tin_inactive =0 AND var_id  <> :z LIMIT $top) as g
@@ -99,7 +99,7 @@ function listItemByItemGroup($dbh,$group, $price_level){
 	$data=array();
 	try{
 		$sql = "
-				SELECT g.var_id, g.var_name, g.var_remark, g.var_categoryid, i.var_urlimg, i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color, 
+				SELECT g.var_id, g.var_name, g.var_remark, g.var_categoryid,g.var_alias, i.var_urlimg, i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color, 
 				       COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['com_price']."' LIMIT 1) ,0) AS price_com, 
 				       COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['web_price']."' LIMIT 1) ,0) AS price_web 
 				FROM (SELECT * FROM config_item_group WHERE var_id= :group AND tin_inactive =0) as g 
@@ -126,6 +126,41 @@ function listItemByItemGroup($dbh,$group, $price_level){
 		return $data;
 	}
 }
+
+
+
+function listItemByAlias($dbh,$alias, $price_level){
+	$data=array();
+	try{
+		$sql = "
+				SELECT g.var_id, g.var_name, g.var_remark, g.var_categoryid,g.var_alias, i.var_urlimg, i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color,
+				       COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['com_price']."' LIMIT 1) ,0) AS price_com,
+				       COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['web_price']."' LIMIT 1) ,0) AS price_web
+				FROM (SELECT * FROM config_item_group WHERE var_alias= :alias AND tin_inactive =0) as g
+
+				LEFT JOIN config_item i on i.var_groupid = (SELECT var_id FROM config_item_group WHERE var_alias= :alias AND tin_inactive =0)
+				LEFT JOIN config_item_factor itf ON i.var_id = itf.var_id
+
+				WHERE g.tin_inactive = 0 AND i.tin_inactive = 0
+				ORDER BY g.datt_createdate desc,g.var_id
+	       ";
+
+		$req = $dbh->prepare($sql);
+		$req->bindParam(":alias", $alias);
+		$req->execute();
+		$num = $req->rowCount();
+		if($num != 0){
+			while($rows = $req->fetch(PDO::FETCH_ASSOC)){
+				$data[] = $rows;
+			}
+			return $data;
+		}
+		$req->closeCursor();
+	}catch(PDOException $cus){
+		return $data;
+	}
+}
+
 function getPriceLevel($dbh){
 	$data=array();
 	try{
@@ -144,6 +179,26 @@ function getPriceLevel($dbh){
 		return $data;
 	}	
 }
+
+function getSize($dbh){
+	$data=array();
+	try{
+		$sql = "call sp_loading_size()";
+		$req = $dbh->prepare($sql);
+		$req->execute();
+		$num = $req->rowCount();
+		if($num != 0){
+			while($rows = $req->fetch(PDO::FETCH_ASSOC)){
+				return $rows;
+			}
+			return $data;
+		}
+		$req->closeCursor();
+	}catch(PDOException $cus){
+		return $data;
+	}
+}
+
 
 function displayItem($data){	
 	if(count($data)>0){
@@ -167,7 +222,7 @@ function disMainItem($data){
 			echo '<div class="left-block">';
 				echo '<div class="product-image-container image ImageWrapper">';
 				echo '<div class="leo-more-info" data-idproduct="1"></div>';
-				echo '<a class="product_img_link" href="'.$server.'detail-product.php" title="Faded Short Sleeve T-shirts" itemprop="url">';
+				echo '<a class="product_img_link" href="'.$server.'product/'.$data['var_alias'].'" title="Faded Short Sleeve T-shirts" itemprop="url">';
 					echo '<img class="replace-2x img-responsive" src="'.$server.'img/product/1/faded-short-sleeve-tshirts.jpg" alt="'.$data['var_name'].'" title="'.$data['var_name'].'" itemprop="image" />';
 					echo '<span class="product-additional" data-idproduct="1">';							
 						echo '<img class="replace-2x img-responsive" src="'.$server.'img/product/1/blouse.jpg" alt="'.$data['var_name'].'" title="'.$data['var_name'].'" itemprop="image" />';					
@@ -176,7 +231,7 @@ function disMainItem($data){
 			echo '</div>';
 		echo '</div>';
 		echo '<div class="right-block"><div class="product-meta"><h5 itemprop="name" class="name">';	
-		echo '<a class="product-name" href="'.$server.'detail-product.php" title="'.$data['var_name'].'" itemprop="url">'.$data['var_name'].'</a>';	
+		echo '<a class="product-name" href="'.$server.'product/'.$data['var_alias'].'" title="'.$data['var_name'].'" itemprop="url">'.$data['var_name'].'</a>';	
 		echo '</h5>';
 		
 		if($data['var_remark']!='')
@@ -204,7 +259,7 @@ function disMainItemStyle($datas, $style){
 			echo '<div class="left-block">';
 			echo '<div class="product-image-container image ImageWrapper">';
 			echo '<div class="leo-more-info" data-idproduct="1"></div>';
-			echo '<a class="product_img_link" href="'.$server.'detail-product.php" title="Faded Short Sleeve T-shirts" itemprop="url">';
+			echo '<a class="product_img_link" href="'.$server.'product/'.$data['var_alias'].'" title="Faded Short Sleeve T-shirts" itemprop="url">';
 			echo '<img class="replace-2x img-responsive" src="'.$server.'img/product/1/faded-short-sleeve-tshirts.jpg" alt="'.$data['var_name'].'" title="'.$data['var_name'].'" itemprop="image" />';
 			echo '<span class="product-additional" data-idproduct="1">';
 			echo '<img class="replace-2x img-responsive" src="'.$server.'img/product/1/blouse.jpg" alt="'.$data['var_name'].'" title="'.$data['var_name'].'" itemprop="image" />';
@@ -213,7 +268,7 @@ function disMainItemStyle($datas, $style){
 			echo '</div>';
 			echo '</div>';
 			echo '<div class="right-block"><div class="product-meta"><h5 itemprop="name" class="name">';
-			echo '<a class="product-name" href="'.$server.'detail-product.php" title="'.$data['var_name'].'" itemprop="url">'.$data['var_name'].'</a>';
+			echo '<a class="product-name" href="'.$server.'product/'.$data['var_alias'].'" title="'.$data['var_name'].'" itemprop="url">'.$data['var_name'].'</a>';
 			echo '</h5>';
 			
 			if($data['var_remark']!='')
@@ -290,3 +345,8 @@ function listItemByCatByPageCount($dbh,$str){
 		return 0;
 	}
 }
+
+
+
+
+
