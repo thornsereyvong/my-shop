@@ -93,7 +93,7 @@
 				</a>
 				<ul class="treeview-menu">					
 					<li class="<?php if($title == 'Item'){ echo "active";} ?>"><a href="<?php echo $server; ?>item"><i class="fa fa-bullhorn"></i> <span>Item</span></a></li>
-					<li class="<?php if($title == 'Category'){ echo "active";} ?>"><a href="<?php echo $server; ?>category"><i class="fa fa-image"></i> <span>Category</span></a></li>	
+					<li class="<?php if($title == 'Category'){ echo "active";} ?>"><a href="<?php echo $server; ?>category-item"><i class="fa fa-image"></i> <span>Category</span></a></li>	
 					<li class="<?php if($title == 'Brand'){ echo "active";} ?>"><a href="<?php echo $server; ?>brand"><i class="fa fa-image"></i> <span>Brand</span></a></li>
 				</ul>
 			</li>
