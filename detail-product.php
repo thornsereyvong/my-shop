@@ -13,12 +13,16 @@
 	$itemId = "";
 	$size = array();
 	$color = array();
+	$curColor = "";
+	$curSize = "";
 	if(count($items)>0){
 		$itemId = $items[0]['var_id'];
 		$group = $items[0]['var_categoryid'];
 		
 		$s = $items[0]['Size'];
 		$c = $items[0]['Color'];
+		$curColor = $c;
+		$curSize = $s;
 		$size[] = $s;
 		$color[] = $c;
 		for ($i=0; $i<count($items); $i++){
@@ -39,6 +43,7 @@
 <head>
 
 <?php include 'layout/head.php';?>
+
 
 
 </head>
@@ -62,8 +67,9 @@
 					<section id="center_column" class="col-md-12">
 						<div id="breadcrumb" class="clearfix">
 							<div class="breadcrumb clearfix">
-								<a class="home" href="<?php echo $server; ?>" title="Return to Home"><i class="fa fa-home"></i></a> <span
-									class="navigation-pipe">&gt;</span> <?php echo $items[0]['var_name']; ?>
+								<a class="home" href="<?php echo $server; ?>" title="Return to Home"><i class="fa fa-home"></i></a> 
+								<span class="navigation-pipe">&gt;</span>
+								<?php echo $items[0]['var_name']; ?>
 							</div>
 						</div>
 						<div class="primary_block row">
@@ -134,8 +140,7 @@
 								</p>
 								<p id="product_condition"></p>
 								<div id="short_description_block">
-									<div id="short_description_content" class="rte align_justify"
-										itemprop="description">
+									<div id="short_description_content" class="rte align_justify" itemprop="description">
 										<p><?php echo $items[0]['var_remark']; ?></p>
 									</div>
 								</div>
@@ -216,7 +221,6 @@
 																echo '<option value="'.$s.'" title="'.$s.'">'.$s.'</option>';
 															}
 														?>
-														
 													</select>
 												</div>
 											</fieldset>
@@ -224,17 +228,15 @@
 											<fieldset class="attribute_fieldset">
 												<label class="attribute_label">Color&nbsp;</label>
 												<div class="attribute_list">
-													
 													<?php 
 														$x = 0;
-														foreach ($color as $c){$x++;
+														foreach ($color as $c){ $x++;
 															if($x ==1)
-																echo '<button type="button" style="border:1px solid black; width:30px; height:30px; background-color: '.$c.' !important; " class="btn btn-primary"></button>';
+																echo '<button id="btnColor'.$x.'" onclick="colorChange(\''.$x.'\',\''.$c.'\')" type="button" style="border:2px solid #357ebd; width:30px; height:30px; background-color: '.$c.' !important; " class="btn btn-primary"></button>';
 															else
-																echo '&nbsp;&nbsp;<button type="button" style="width:30px; height:30px; border:0px; background-color: '.$c.' !important; " class="btn btn-primary"></button>';
+																echo '&nbsp;&nbsp;<button id="btnColor'.$x.'"  type="button" onclick="colorChange(\''.$x.'\',\''.$c.'\')" style="width:30px; height:30px; border:0px; background-color: '.$c.' !important; " class="btn btn-primary"></button>';
 														}
 													?>
-													
 												</div>
 											</fieldset>
 										</div>
@@ -249,8 +251,6 @@
 															echo '<span id="" itemprop="price" style="color:#2db6c2;"><i>$ '.number_format($items[0]['price_com'],2).'</i></span>';
 														}
 													?>
-													
-													
 												</p>
 											</div>
 											<div class="clear"></div>
@@ -271,10 +271,9 @@
 												<span class="clearfix"></span>
 											</p>
 											<p id="minimal_quantity_wanted_p" style="display: none;">
-												The minimum purchase order quantity for the product is <b
-													id="minimal_quantity_label">1</b>
+												The minimum purchase order quantity for the product is 
+												<b id="minimal_quantity_label">1</b>
 											</p>
-											
 										</div>
 										
 										<!-- <div class="box-cart-bottom">
@@ -329,8 +328,8 @@
 												<span class="clearfix"></span>
 											</p>
 											<p id="minimal_quantity_wanted_p" style="display: none;">
-												The minimum purchase order quantity for the product is <b
-													id="minimal_quantity_label">1</b>
+												The minimum purchase order quantity for the product is 
+												<b id="minimal_quantity_label">1</b>
 											</p>
 											<div class="box-cart-bottom">
 												<div>
@@ -372,10 +371,8 @@
 										</div>
 										<div class="box-cart-bottom">
 											<p class="buttons_bottom_block no-print">
-												<a id="wishlist_button" href="#"  rel="nofollow" title="Add to my wishlist"> Add to
-													wishlist </a>
+												<a id="wishlist_button" href="#"  rel="nofollow" title="Add to my wishlist"> Add to wishlist </a>
 											</p>
-											
 											<strong></strong>
 										</div>
 									</div>
@@ -401,9 +398,17 @@
 	<script>
 
 		var dataObj = '<?php if(count($items)>0) echo json_encode($items); ?>';
-
 	 	var dataObj = JSON.parse(dataObj);
-
+		var cur_color = '<?php echo $curColor;?>';
+		var cur_size = '<?php echo $curSize;?>';
+		var cur_color_index = 1;
+		function colorChange(index,color){
+			$("#btnColor"+cur_color_index).attr("style","width:30px; height:30px; border:0px; background-color: "+cur_color+" !important; ");
+			$("#btnColor"+index).attr('style',"border:2px solid #357ebd; width:30px; height:30px; background-color: "+color+" !important; ")
+			cur_color = color;
+			cur_color_index = index;
+		}
+	 	
 		
 	</script>
 	
