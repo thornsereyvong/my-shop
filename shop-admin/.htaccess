@@ -134,6 +134,10 @@ RewriteRule ^controller-edit-item$ controller/item/edit_controller.php
 RewriteRule ^controller-delete-item$ controller/item/delete_controller.php
 
 
-
+RewriteRule ^category$ category.php
+RewriteRule ^controller-create-category$ controller/category/insert_controller.php
+RewriteRule ^controller-list-category$ controller/category/list_controller.php
+RewriteRule ^controller-edit-category$ controller/category/edit_controller.php
+RewriteRule ^controller-delete-category$ controller/category/delete_controller.php
 
 
