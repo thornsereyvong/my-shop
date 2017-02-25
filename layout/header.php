@@ -20,11 +20,10 @@
 			<div class="container">
 				<div class="inner">
 					<div class="row">
-						
 						<div id="header_logo"
 							class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-sp-12">
 							<a href="<?php echo $server; ?>" title="Leo Clothing"> 
-							<img class="logo img-responsive" src="<?php echo $server; ?>img/leo-clothing-1415952171-2.jpg" alt="Leo Clothing" width="158" height="69" />
+							<img style="margin-top: 16px;" class="logo img-responsive" src="<?php echo $server; ?>images/logo/jj.png" alt="Leo Clothing" width="158" height="69" />
 							</a>
 						</div>
 						

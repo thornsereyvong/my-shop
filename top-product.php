@@ -24,6 +24,9 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		
 		<script>
 			/* <![CDATA[ */;
 			$(document).ready(function() {
@@ -55,4 +58,10 @@
 		</script>
 	</div>
 <?php }} ?>
+
+
+
+
+
+
 </div>

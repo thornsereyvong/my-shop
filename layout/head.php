@@ -504,3 +504,8 @@
 <link rel="stylesheet" href="<?php echo $server; ?>themes/leo_clothing/css/customize/test33.css" type="text/css" media="all" />
 <link href='http://fonts.googleapis.com/css?family=Hind:400,300,500,600,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<?php echo $server; ?>css/i-custom-style.css" type="text/css"  />
+
+<script src="<?php echo $server; ?>modules/sweetalert/sweetalert-dev.js"></script>
+<link rel="stylesheet" href="<?php echo $server; ?>modules/sweetalert/sweetalert.css">
+<link rel="stylesheet" href="<?php echo $server; ?>modules/sweetalert/swal-forms.css">
+<script src="<?php echo $server; ?>modules/sweetalert/swal-forms.js"></script>

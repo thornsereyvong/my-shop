@@ -245,7 +245,7 @@ function disMainItem($data){
 		echo '<div class="product-flags"></div>';
 		echo '<div class="functional-buttons clearfix">';
 		echo '<div class="cart">';
-		echo '<a class="button ajax_add_to_cart_button btn" href="#" rel="nofollow" title="Add to cart" data-id-product="1" data-minimal_quantity="1"> <i class="fa fa-shopping-cart"></i> <span>Add to order</span></a>';						
+		echo '<button class="button btn" onClick="orderFrm()" > <i class="fa fa-shopping-cart"></i> Add to order</button>';						
 		echo '</div></div></div></div></div></div>';	
 }
 
@@ -282,7 +282,7 @@ function disMainItemStyle($datas, $style){
 						echo '<div class="product-flags"></div>';
 						echo '<div class="functional-buttons clearfix">';
 						echo '<div class="cart">';
-						echo '<a class="button ajax_add_to_cart_button btn" href="#" rel="nofollow" title="Add to cart" data-id-product="1" data-minimal_quantity="1"> <i class="fa fa-shopping-cart"></i> <span>Add to order</span></a>';
+						echo '<button class="button btn" onClick="orderFrm()" > <i class="fa fa-shopping-cart"></i> Add to order</button>';
 						echo '</div></div></div></div></div></div>';
 		}
 	}
@@ -297,7 +297,7 @@ function listItemByCatByPage($dbh,$str, $start,$num_row,$price_level){
 		$sql = "
 				SELECT tbl_item.* , MIN(tbl_item.price_web) 'min_price'
 				FROM
-				       (SELECT g.var_id, g.var_name, g.var_remark,g.datt_createdate, i.var_urlimg, i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color,
+				       (SELECT g.var_id, g.var_name, g.var_remark,g.datt_createdate, i.var_urlimg,g.var_alias, i.var_id AS ItemID,i.var_name AS ItemName,i.var_barcode AS Barcode,itf.var_uomid AS UOM,i.var_sizeid AS Size, i.var_colorid AS Color,
 					   COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['com_price']."' LIMIT 1) ,0) AS price_com,
 				       COALESCE((SELECT ip.dou_price FROM config_item_price ip WHERE ip.var_id = i.var_id AND ip.var_uomid = itf.var_uomid AND ip.var_pricelevelid = '".$price_level['web_price']."' LIMIT 1) ,0) AS price_web
 				       FROM (SELECT * FROM config_item_group WHERE var_categoryid in ($str) AND tin_inactive =0 ORDER BY datt_createdate desc LIMIT $start, $num_row) as g

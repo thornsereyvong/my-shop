@@ -4,12 +4,12 @@
 			<div class=" banner-image">
 				<div class="top-banner">
 					<h6>
-						<a href="#">kobold himalaya</a>
+						<a href="#">JADE JASON</a>
 					</h6>
 					<h4>
-						<a href="#">Velit Tor aliquet</a>
+						<a href="#">MAN</a>
 					</h4>
-					<p>Nam nec tellus a odio dunt auctor</p>
+					
 				</div>
 				<a href="#"><img class="img-responsive"
 					src="<?php echo $server; ?>themes/leo_clothing/img/modules/leomanagewidgets/home_adv_1.jpg"
@@ -28,12 +28,12 @@
 					alt="" /></a>
 				<div class="top-banner">
 					<h6>
-						<a href="#">kobold himalaya</a>
+						<a href="#">JADE JASON</a>
 					</h6>
 					<h4>
-						<a href="#">Velit Tor aliquet</a>
+						<a href="#">KIDS</a>
 					</h4>
-					<p>Nam nec tellus a odio dunt auctor</p>
+					<p></p>
 				</div>
 			</div>
 		</div>
@@ -46,12 +46,12 @@
 			<div class=" banner-image">
 				<div class="top-banner">
 					<h6>
-						<a href="#">kobold himalaya</a>
+						<a href="#">JADE JASON</a>
 					</h6>
 					<h4>
-						<a href="#">Velit Tor aliquet</a>
+						<a href="#">WOMEN</a>
 					</h4>
-					<p>Nam nec tellus a odio dunt auctor</p>
+					
 				</div>
 				<a href="#"><img class="img-responsive"
 					src="<?php echo $server; ?>themes/leo_clothing/img/modules/leomanagewidgets/home_adv_3.jpg"
