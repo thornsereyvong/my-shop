@@ -22,14 +22,14 @@
 
 			var description = "";
 			var img_thumb = "";
-			var app = angular.module('promotion_app', ['angularUtils.directives.dirPagination','angular-loading-bar', 'ngAnimate']).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+			var app = angular.module('category_app', ['angularUtils.directives.dirPagination','angular-loading-bar', 'ngAnimate']).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
 				    cfpLoadingBarProvider.includeSpinner = false;
 		  	}]);
 			var self = this;
 			var server = "<?php echo $server; ?>";
 			var index = 0;
 			var pId = 0;
-			app.controller('promotion_cl',['$scope','$http',function($scope, $http){
+			app.controller('category_cl',['$scope','$http',function($scope, $http){
 
 				$scope.sort = function(keyname){
 				    $scope.sortKey = keyname;
@@ -163,7 +163,7 @@
 			    		var statusAddPro = $("#frmAddPromotion").data('bootstrapValidator').validate().isValid();
 			    		if(statusAddPro){				    	
 			    			swal({   
-								title: "<span style='font-size: 25px;'>You are about to create new promotion.</span>",
+								title: "<span style='font-size: 25px;'>You are about to create new category.</span>",
 								text: "Click OK to continue or CANCEL to abort.",
 								type: "info",
 								html: true,
@@ -174,7 +174,7 @@
 								setTimeout(function(){
 									$http({
 									    method: 'POST',
-									    url: server+'controller-create-promotion',
+									    url: server+'controller-create-category',
 									    data:{
 									    	"status": getInt('status'),
 									    	"img": img_thumb,
@@ -214,7 +214,7 @@
 			    		var statusAddPro = $("#frmAddPromotion").data('bootstrapValidator').validate().isValid();
 			    		if(statusAddPro){
 			    			swal({   
-								title: "<span style='font-size: 25px;'>You are about to update promotion.</span>",
+								title: "<span style='font-size: 25px;'>You are about to update category.</span>",
 								text: "Click OK to continue or CANCEL to abort.",
 								type: "info",
 								html: true,
@@ -225,7 +225,7 @@
 								setTimeout(function(){
 									$http({
 									    method: 'POST',
-									    url: server+'controller-edit-promotion',
+									    url: server+'controller-edit-category',
 									    data:{
 										    'artId' : pId,
 									    	"status": getInt('status'),
@@ -367,14 +367,14 @@
 			<div class="content-wrapper">
 				<section class="content-header">
 					<h1>
-						Promotion<small></small>
+						Category<small></small>
 					</h1>
 					<ol class="breadcrumb">
 						<li><a href="<?php echo $server;?>"><i class="fa fa-home"></i> Home</a></li>
-						<li class="active">Promotion</li>
+						<li class="active">Category</li>
 					</ol>
 				</section>
-				<section class="content" ng-app="promotion_app" ng-controller="promotion_cl"  data-ng-init="listPromotion()">
+				<section class="content" ng-app="category_app" ng-controller="category_cl"  data-ng-init="listPromotion()">
 					<div class="row">
 						<div class="col-sm-12"  style="padding-right: 0px;">
 							<div class="box box-primary">
@@ -454,7 +454,7 @@
 									<div class="modal-header">
 										<button type="button" ng-click="cancelPromotionClick()" class="close" data-dismiss="modal">&times;</button>
 										<h4 class="modal-title">
-											<b>[{{evt.activity}}] PROMOTION</b>
+											<b>[{{evt.activity}}] CATEGORY</b>
 										</h4>
 									</div>
 									
@@ -477,6 +477,15 @@
 													</div>
 												</div>
 												<div class="clearfix"></div>
+												<div class="col-sm-6">
+													<div class="form-group">
+														<label>Parent <span class="requrie">(Required)</span></label> 
+														<select name="status" class="form-control" id="status">
+															<option value="1">Publish</option>
+															<option value="0">Unpublish</option>
+														</select>
+													</div>
+												</div>
 												<div class="col-sm-6">
 													<div class="form-group">
 														<label>Short Order</label>
