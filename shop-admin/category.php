@@ -12,7 +12,9 @@
 
 	$title = "Category";
 	include_once 'app.php';
-	
+	include 'Model/category/category.DAO.php';
+		
+	$category_data = $category->listCategory();
 ?>
 <!DOCTYPE html>
 <html>
@@ -481,8 +483,10 @@
 													<div class="form-group">
 														<label>Parent <span class="requrie">(Required)</span></label> 
 														<select name="status" class="form-control" id="status">
-															<option value="1">Publish</option>
-															<option value="0">Unpublish</option>
+															<option value="">SELECT A PARENT</option>
+															<?php 
+																$category->getChild($category->getChildMain(''));
+															?>
 														</select>
 													</div>
 												</div>
