@@ -3,7 +3,7 @@
 	$title = "HOME";
 
 ?>
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<head>
